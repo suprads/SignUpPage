@@ -1,4 +1,4 @@
-﻿namespace MauiApp1
+﻿namespace SignUpPage
 {
     public partial class MainPage : ContentPage
     {
@@ -9,16 +9,16 @@
             InitializeComponent();
         }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
+        private void BtnSignUpClicked (object? sender, EventArgs e)
         {
-            count++;
+            var myData = new Dictionary<string, object>
+            {
+                {"username",$"{Username.Text}" },
+                {"password", $"{Password.Text}" },
+                {"confirmPassword", $"{ConfirmPassword.Text}" }
+            };
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            Shell.Current.GoToAsync(nameof(ProfilePage), myData);
         }
     }
 }
